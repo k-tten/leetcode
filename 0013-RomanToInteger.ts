@@ -1,4 +1,29 @@
 function romanToInt(s: string): number {
+    const map = {
+        M: 1000,
+        D: 500,
+        C: 100,
+        L: 50,
+        X: 10,
+        V: 5,
+        I: 1,
+    };
+
+    let out = 0;
+
+    for (let i = 0; i < s.length; i++) {
+        const val = map[s[i]];
+        const next = i < s.length - 1 ? map[s[i + 1]] : 0;
+
+        out += val * (val < next ? -1 : 1);
+    }
+
+    return out;
+}
+
+// first attempt kinda dumb
+
+function romanToInt(s: string): number {
     const chars = [...s];
 
     let out = 0;
